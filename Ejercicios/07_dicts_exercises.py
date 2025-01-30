@@ -46,3 +46,5 @@ print(my_list)
 my_dict = dict.fromkeys(["name", "age", "job"], "Desconocido")
 print(my_dict)
 print(type(my_dict))
+
+print(my_dict["Nokey"])
