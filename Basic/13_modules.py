@@ -2,7 +2,7 @@
 
 ### Modules ###
 
-from math import pi as PI_VALUE
+from math import pi as PI_VALUE #Crea un alias
 import math
 from my_module import sumValue, printValue
 import my_module
