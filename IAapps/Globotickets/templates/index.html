@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Globotickets</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="static/logo.png" alt="Globotickets Logo">
+        <h1>Globotickets</h1>
+    </header>
+
+    <div class="container">
+        <input type="text" id="cityInput" placeholder="Introduce una ciudad" />
+        <button onclick="searchEvents()">Buscar eventos</button>
+
+        <div id="eventsContainer"></div>
+    </div>
+
+    <script>
+        async function searchEvents() {
+            const city = document.getElementById("cityInput").value;
+            const container = document.getElementById("eventsContainer");
+            container.innerHTML = "Buscando eventos...";
+
+            const res = await fetch(`http://localhost:5000/api/events?city=${encodeURIComponent(city)}`);
+            const events = await res.json();
+
+            if (events.length === 0) {
+                container.innerHTML = "No se encontraron eventos.";
+                return;
+            }
+
+            container.innerHTML = "";
+            for (const event of events) {
+                const eventDiv = document.createElement("div");
+                eventDiv.className = "event";
+
+                eventDiv.innerHTML = `
+          <strong>${event.name}</strong><br/>
+          Fecha: ${event.date || 'Desconocida'} ${event.time || ''}<br/>
+          Lugar: ${event.venue}<br/>
+          <a href="${event.url}" target="_blank">Comprar entradas</a><br/>
+          <button onclick="loadImages('${event.id}', this)">Ver imágenes</button>
+          <div class="images"></div>
+        `;
+
+                container.appendChild(eventDiv);
+            }
+        }
+
+        async function loadImages(eventId, button) {
+            const imagesDiv = button.nextElementSibling;
+            imagesDiv.innerHTML = "Cargando imágenes...";
+
+            try {
+                const res = await fetch(`http://localhost:5000/api/events/${eventId}/images`);
+                const images = await res.json();
+
+                if (images.length === 0) {
+                    imagesDiv.innerHTML = "No hay imágenes disponibles.";
+                    return;
+                }
+
+                imagesDiv.innerHTML = "";
+                for (const img of images) {
+                    const imgElem = document.createElement("img");
+                    imgElem.src = img.url;
+                    imgElem.alt = "Imagen del evento";
+                    imagesDiv.appendChild(imgElem);
+                }
+            } catch (e) {
+                imagesDiv.innerHTML = "Error al cargar imágenes.";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

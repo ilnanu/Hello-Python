@@ -1,0 +1,62 @@
+Quiero crear una aplicación sencilla para eventos llamada Globotickets, utilizando Python y Javascript. 
+El usuario podrá entrar el nombre de una ciudad y entonces la aplicación obtendrá y visualizara una lista de eventos en la ciudad
+llamando al API de Ticketmaster. ¿Puedes describir a alto nivel como deberia encarar esta aplicación?
+
+trabajemos en el backend.Escribe el código Python/Flask necesario
+
+Te paso la documentacion de la API para Tocketmaster's Event Images API. Escribe el código necesario en Python/Flask para el backend de la aplicacion Globotickets.
+###
+Get Event Images
+Method: GET
+
+Summary: Get Event Images
+
+Description: Get images for a specific event using the unique identifier for the event.
+
+/discovery/v2/events/{id}/images
+
+URL parameters:
+Parameter	Description	Type	Default Value	Required
+id 	ID of the event	String		Yes
+Query parameters:
+Parameter	Description	Type	Default Value	Required
+locale	The locale in ISO code format. Multiple comma-separated values can be provided. When omitting the country part of the code (e.g. only 'en' or 'fr') then the first matching locale is used. When using a '*' it matches all locales. '*' can only be used at the end (e.g. 'en-us,en,*')	String	*	No
+domain	Filter entities based on domains they are available on	Array		No
+Response structure:
+200successful operation
+
+_links(object) - links to data sets
+type(string) - Type of the entity
+id(string) - Unique id of the entity in the discovery API
+images(array) - Images of the entity
+JavaScript
+$.ajax({
+  type:"GET",
+  url:"https://app.ticketmaster.com/discovery/v2/events/k7vGFKzleBdwS/images.json?apikey=d925CRYN8ZjvPzKCUKbMZBweY8iDaZjB",
+  async:true,
+  dataType: "json",
+  success: function(json) {
+              console.log(json);
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+Examples:
+RequestResponse
+
+GET /discovery/v2/events/0B004F0401BD55E5/images.json?apikey=d925CRYN8ZjvPzKCUKbMZBweY8iDaZjB HTTP/1.1
+Host: app.ticketmaster.com
+X-Target-URI: https://app.ticketmaster.com
+Connection: Keep-Alive
+
+# Ahora trabajemos en el front-end de la aplicacion. Escribe el código Javascript necesario para obtener la entrada del usuario y la envie al backend.
+
+Vamos a trabajar en el estilo, y luego tengo un par de requisitos sencillos. 
+La parte superior de la página debe tener un banner negro y un logotipo llamado logo.png que añadiré a mi proyecto. 
+Queremos que esté alineado a la izquierda. El color de énfasis debe ser rosa. Tengo el código hexadecimal aqui #FF1675 
+.La fuente debe ser Segoe UI. El código deberia estar en un archivo CSS aparte.
+
+Por favor, escribe test unitarios para la aplicación utilizando el framework pytest
