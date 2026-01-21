@@ -19,6 +19,11 @@ my_other_list = [35, 1.77, "Brais", "Moure"]
 print(type(my_list))
 print(type(my_other_list))
 
+# Creating a list using list() function
+r=range(0, 10)
+l=list(r)
+print(l)
+
 # Acceso a elementos y búsqueda
 
 print(my_other_list[0])
@@ -92,3 +97,18 @@ print(my_new_list[1:3])
 my_list = "Hola Python"
 print(my_list)
 print(type(my_list))
+
+names_list = ['John', 'James', 'Lily', 'Emily', 'Nina']
+print(names_list[::2])
+
+# List Comprehensions
+my_list = [1, 2, 3, 4]
+my_list_2 = [ i*2 for i in my_list]
+print(my_list)
+print(my_list_2)
+
+s=range(1, 20, 3)
+for i in s:  #This loop is for knowing what is in s
+   print(i)
+m=[x for x in s if x%2==0] #List comprehension
+print(m)
