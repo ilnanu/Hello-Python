@@ -1,0 +1,4 @@
+01/22/2026 10:41:55AM - LoggerDemoConsoleINFO: info message
+01/22/2026 10:41:55AM - LoggerDemoConsoleWARNING: warn message
+01/22/2026 10:41:55AM - LoggerDemoConsoleERROR: error message
+01/22/2026 10:41:55AM - LoggerDemoConsoleCRITICAL: critical message

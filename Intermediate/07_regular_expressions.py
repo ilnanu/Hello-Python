@@ -80,7 +80,7 @@ email = "mouredev@mouredev.com.mx"
 print(re.findall(pattern, email))
 
 # Ejercicios Regular Expressions
-#1. Busca si una cadena empieza por "Hola".
+# 1. Busca si una cadena empieza por "Hola".
 cadena = "Hola, ¿cómo estás?"
 pattern = r"^Hola"
 print(re.match(pattern, cadena))
@@ -136,3 +136,295 @@ print(re.findall(pattern, cadena))
 cadena = "(123) 456-7890"
 pattern = r"\(\d{3}\) \d{3}-\d{4}"
 print(re.match(pattern, cadena))
+
+# DotNetTutorials Examples
+
+import re
+
+count = 0
+pattern = re.compile("ab")
+matcher = pattern.finditer("abaababa")
+for match in matcher:
+    count += 1
+    print(match.start(), "...", match.end(), "...", match.group())
+    print("The number of occurrences: ", count)
+
+import re
+
+count = 0
+matcher = re.finditer("ab", "abaababa")
+for match in matcher:
+    count += 1
+    print(match.start(), "...", match.end(), "...", match.group())
+    print("The number of occurrences: ", count)
+
+
+import re
+
+matcher = re.finditer("[abc]", "a7b@k9z")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+
+import re
+
+matcher = re.finditer("[^abc]", "a7b@k9z")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+import re
+
+matcher = re.finditer("[a-z]", "a7b@k9z")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+import re
+
+matcher = re.finditer("[0-9]", "a7b@k9z")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+import re
+
+matcher = re.finditer("[a-zA-Z0-9]", "a7b@k9z")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+
+import re
+
+matcher = re.finditer("[^a-zA-Z0-9]", "a7b@k9z")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+import re
+
+matcher = re.finditer("\s", "a7b @k9z")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+import re
+
+matcher = re.finditer("\S", "a7b @k9z")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+
+import re
+
+matcher = re.finditer("\d", "a7b @k9z")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+import re
+
+matcher = re.finditer("\D", "a7b @k9z")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+import re
+
+matcher = re.finditer("\w", "a7b @k9z")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+import re
+
+matcher = re.finditer("\W", "a7b @k9z")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+import re
+
+matcher = re.finditer(".", "a7b @k9z")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+import re
+
+matcher = re.finditer("a", "abaabaaab")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+import re
+
+matcher = re.finditer("a+", "abaabaaab")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+import re
+
+matcher = re.finditer("a*", "abaabaaab")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+import re
+
+matcher = re.finditer("a?", "abaabaaab")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+import re
+
+matcher = re.finditer("a{3}", "abaabaaab")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+import re
+
+matcher = re.finditer("a{2,4}", "abaabaaab")
+for match in matcher:
+    print(match.start(), "......", match.group())
+
+# match
+
+import re
+
+s = input("Enter pattern to check: ")
+m = re.match(s, "abcabdefg")
+if m != None:
+    print("Match is available at the beginning of the String")
+    print("Start Index:", m.start(), "and End Index:", m.end())
+else:
+    print("Match is not available at the beginning of the String")
+
+# fullmatch():
+
+
+import re
+
+s = input("Enter pattern to check: ")
+m = re.fullmatch(s, "ababab")
+if m != None:
+    print("Full String Matched")
+else:
+    print("Full String not Matched")
+
+# search():
+
+
+import re
+
+s = input("Enter pattern to check: ")
+m = re.search(s, "abaaaba")
+if m != None:
+    print("Match is available")
+    print(
+        "First Occurrence of match with start index:",
+        m.start(),
+        "and end index:",
+        m.end(),
+    )
+else:
+    print("Match is not available")
+
+# findall():
+
+import re
+
+l = re.findall("[0-9]", "a7b9c5kz")
+print(l)
+
+
+# finditer():
+
+
+import re
+
+itr = re.finditer("[a-z]", "a7b9c5k8z")
+for m in itr:
+    print(m.start(), "...", m.end(), "...", m.group())
+
+# sub():
+re.sub(regex, replacement, targetstring)
+
+
+import re
+
+s = re.sub("[a-z]", "#", "a7b9c5k8z")
+print(s)
+
+# subn():
+
+import re
+
+t = re.subn("[a-z]", "#", "a7b9c5k8z")
+print(t)
+print("The Result String:", t[0])
+print("The number of replacements:", t[1])
+
+# split():
+
+import re
+
+l = re.split(",", "KGF,BB1,BB2")
+print(l)
+for t in l:
+    print(t)
+
+import re
+
+s = "Learning Python is Very Easy"
+res = re.search("^Learn", s)
+if res != None:
+    print("Target String starts with Learn")
+else:
+    print("Target String Not starts with Learn")
+
+import re
+
+s = "Learning Python is Very Easy"
+res = re.search("Easy$", s)
+if res != None:
+    print("Target String ends with Easy")
+else:
+    print("Target String Not ends with Easy")
+
+import re
+
+s = "Learning Python is Very Easy"
+res = re.search("easy$", s, re.IGNORECASE)
+if res != None:
+    print("Target String ends with Easy by ignoring case")
+else:
+    print("Target String Not ends with Easy by ignoring case")
+
+import re
+
+s = input("Enter string:")
+m = re.fullmatch("[a-k][0369][a-zA-Z0-9#]*", s)
+if m != None:
+    print(s, "Entered regular expression is matched")
+else:
+    print(s, " Entered regular expression is not matched ")
+
+
+import re
+
+n = input("Enter number:")
+m = re.fullmatch("[7-9]\d{9}", n)
+if m != None:
+    print("Valid Mobile Number")
+else:
+    print("Please enter valid Mobile Number")
+
+import re
+
+f1 = open("input.txt", "r")
+f2 = open("output.txt", "w")
+for line in f1:
+    items = re.findall("[7-9]\d{9}", line)
+    for n in items:
+        f2.write(n + "\n")
+print("Extracted all Mobile Numbers into output.txt")
+f1.close()
+f2.close()
+
+import re
+
+s = input("Enter Mail id:")
+m = re.fullmatch("\w[a-zA-Z0-9_.]*@gmail[.]com", s)
+if m != None:
+    print("Valid Mail Id")
+else:
+    print("Invalid Mail id")
